@@ -1,0 +1,26 @@
+{
+  "category": [
+    {
+      "name": "裹腳布",
+      "icon": "fas fa-home"
+    },
+    {
+      "name": "蠶寶寶",
+      "icon": "fas fa-grin-beam"
+    }
+  ],
+  "record": [
+    {
+      "name": "裹腳布",
+      "category": "家用支出",
+      "amount": 123,
+      "date": "2020/1/1"
+    },
+    {
+      "name": "蠶寶寶",
+      "category": "娛樂費用",
+      "amount": 888,
+      "date": "2020/9/1"
+    }
+  ]
+}
