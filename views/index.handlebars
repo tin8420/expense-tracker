@@ -1,10 +1,19 @@
-{{#each records}}
-<ul>
-  <li>
+<div class="total">
+  {{totalAmount}}
+</div>
+<ul class="list-group">
+  {{#each records}}
+  <li class="list-group-item">
+    <i class="{{this.icon}}"></i>
+    <div class="category">
+      {{this.category}}
+    </div>
     <div class="name">{{this.name}}</div>
-    <div class="category">{{this.category}}</div>
     <div class="amount">{{this.amount}}</div>
     <div class="date">{{this.date}}</div>
   </li>
+  {{/each}}
 </ul>
-{{/each}}
+
+<a class="btn btn-outline-dark" href="./todos/new" role="button">新增
+</a>

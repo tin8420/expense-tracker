@@ -8,7 +8,7 @@ const recordSchema = new Schema({
   },
   category: String,
   amount: Number,
-  date: Date,
+  date: String,
 })
 
 module.exports = mongoose.model('Record', recordSchema)
