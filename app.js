@@ -23,12 +23,32 @@ app.get('/', async (req, res) => {
   res.render('index', { records: records, totalAmount: totalAmount })
   // accumulator累加器初始值為0
   // record為當前陣列索引值
-  console.log(totalAmount)
 })
-app.get('/new', (req, res) => {
-  res.render('/new')
+app.get('/records/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/create', async (req, res) => {
+  const newExpense = req.body
+  const icon = {
+    家庭支出: 'fas fa-home',
+    交通費: 'fas fa-shuttle-van',
+    娛樂費: 'fas fa-grin-beam',
+    飲食費: 'fas fa-utensils',
+    其他支出: 'fas fa-pen'
+  }
+  await Category.create({
+    name: newExpense.name,
+    icon: icon[newExpense.category]
+  })
+  await Record.create({
+    name: newExpense.name,
+    amount: newExpense.amount,
+    date: newExpense.date,
+  }).then(res.redirect('/')).catch(err => console.log('Create Error'))
 
 })
+
 app.listen(port, () => {
   console.log(`Server now is running on localhost:${port}`)
 })

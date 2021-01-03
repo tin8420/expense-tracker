@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="form-container">
+    <div class="back-ward">
+      <a href="/"><i class="fas fa-arrow-left fa-4x"></i></a>
+    </div>
+    <form action="/create" method="POST">
+      <div class="form-group">
+        <label for="name">名稱</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="請輸入支出名稱" required>
+      </div>
+      <div class="form-group">
+        <label for="date">日期</label>
+        <input type="date" class="form-control" id="date" name="date" required>
+      </div>
+      <div class="form-group">
+        <label for="Category">支出類別</label>
+        <select id="Category" class="form-control" name="category" required>
+          <option selected>家庭支出</option>
+          <option>交通費</option>
+          <option>娛樂費</option>
+          <option>飲食費</option>
+          <option>其他支出</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="amount">金額</label>
+        <input type="number" class="form-control" id="amount" name="amount" placeholder="請輸入金額" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">新增</button>
+    </form>
+  </div>
+</div>
