@@ -6,7 +6,7 @@ const Record = require('./models/Record')
 const Category = require('./models/Category')
 const port = 3000
 require('./config/mongoose')
-
+let icon = {}
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -17,37 +17,58 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', async (req, res) => {
   const recordData = await Record.find().lean()
   const categoryData = await Category.find().lean()
-  let records = recordData.map((item, i) => Object.assign({}, item, categoryData[i]))
+  // Create icon object dynamic
+  for (const categories of categoryData) {
+    icon[categories.type] = categories.icon
+  }
+  let records = categoryData.map((item, i) => Object.assign({}, item, recordData[i]))
   const totalAmount = records.reduce((accumulator, record) => accumulator + record.amount, 0)
+  for (const record of records) {
+    record.icon = icon[record.category]
+  }
+  res.render('index', { records, totalAmount })
 
-  res.render('index', { records: records, totalAmount: totalAmount })
-  // accumulator累加器初始值為0
-  // record為當前陣列索引值
 })
+
 app.get('/records/new', (req, res) => {
-  res.render('new')
+  Category.find()
+    .lean()
+    .then(categories => res.render('new', { categories }))
 })
 
 app.post('/create', async (req, res) => {
   const newExpense = req.body
-  const icon = {
-    家庭支出: 'fas fa-home',
-    交通費: 'fas fa-shuttle-van',
-    娛樂費: 'fas fa-grin-beam',
-    飲食費: 'fas fa-utensils',
-    其他支出: 'fas fa-pen'
-  }
+  console.log(icon)
   await Category.create({
     name: newExpense.name,
+    type: newExpense.category,
     icon: icon[newExpense.category]
   })
-  await Record.create({
-    name: newExpense.name,
-    amount: newExpense.amount,
-    date: newExpense.date,
-  }).then(res.redirect('/')).catch(err => console.log('Create Error'))
-
+  await Record.create(newExpense)
+    .then(res.redirect('/'))
+    .catch(err => console.log('Create Error'))
 })
+
+app.get('/records/:id/edit', async (req, res) => {
+  const id = req.params.id
+  await Record.findById(id)
+    .lean()
+    .then(records => {
+      Category.find()
+        .lean()
+        .then(categories => res.render('edit', { records, categories }))
+    })
+})
+app.post('/records/:id', async (req, res) => {
+  const id = req.params.id
+  const updated = req.body
+  return Record.findById(id)
+    .then(record => {
+      record = Object.assign(record, updated)
+      return record.save()
+    }).then(res.redirect('/')).catch(err => console.log('Error'))
+})
+
 
 app.listen(port, () => {
   console.log(`Server now is running on localhost:${port}`)

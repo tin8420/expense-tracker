@@ -6,6 +6,7 @@ const categorySchema = new Schema({
     type: String,
     required: true
   },
+  type: String,
   icon: String
 })
 

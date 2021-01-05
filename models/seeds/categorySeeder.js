@@ -7,6 +7,7 @@ db.once('open', async () => {
   for (const item of categories) {
     await Category.create({
       name: item.name,
+      type: item.type,
       icon: item.icon
     }).then(() => console.log('seed build successfully'))
       .catch(err => console.log(`something went wrong${err}`))

@@ -2,25 +2,49 @@
   "category": [
     {
       "name": "裹腳布",
+      "type": "家庭支出",
       "icon": "fas fa-home"
     },
     {
       "name": "蠶寶寶",
+      "type": "娛樂費",
       "icon": "fas fa-grin-beam"
+    },
+    {
+      "name": "生日大餐",
+      "type": "飲食費",
+      "icon": "fas fa-utensils"
+    },
+    {
+      "name": "加油",
+      "type": "交通費",
+      "icon": "fas fa-shuttle-van"
     }
   ],
   "record": [
     {
       "name": "裹腳布",
-      "category": "家用支出",
+      "category": "家庭支出",
       "amount": 123,
-      "date": "2020/1/1"
+      "date": "2020-01-01"
     },
     {
       "name": "蠶寶寶",
-      "category": "娛樂費用",
+      "category": "娛樂費",
       "amount": 888,
-      "date": "2020/9/1"
+      "date": "2020-09-01"
+    },
+    {
+      "name": "生日大餐",
+      "category": "飲食費",
+      "amount": 789,
+      "date": "2020-02-01"
+    },
+    {
+      "name": "加油",
+      "category": "交通費",
+      "amount": 823,
+      "date": "2020-11-01"
     }
   ]
 }
