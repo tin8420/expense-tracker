@@ -2,18 +2,18 @@
   {{totalAmount}}
 </div>
 <ul class="list-group">
-  {{#each records}}
+  {{#each recordData}}
   <li class="list-group-item">
-    <i class="{{this.icon}}"></i>
-    <div class="category">
-      {{this.category}}
-    </div>
+    <i class="{{this.category}}"></i>
     <div class="name">{{this.name}}</div>
     <div class="amount">{{this.amount}}</div>
     <div class="date">{{this.date}}</div>
     <div class="edit">
       <a href="./records/{{this._id}}/edit"><i class="far fa-edit"></i></a>
     </div>
+    <form action="/records/{{this._id}}/delete" method="POST">
+      <button class="btn-delete" type="submit"><i class="fas fa-trash-alt fa-2x"></i></button>
+    </form>
   </li>
   {{/each}}
 </ul>

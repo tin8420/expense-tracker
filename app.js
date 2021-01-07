@@ -6,7 +6,7 @@ const Record = require('./models/Record')
 const Category = require('./models/Category')
 const port = 3000
 require('./config/mongoose')
-let icon = {}
+
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -17,16 +17,16 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', async (req, res) => {
   const recordData = await Record.find().lean()
   const categoryData = await Category.find().lean()
+  const totalAmount = recordData.reduce((accumulator, record) => accumulator + record.amount, 0)
+  let icon = {}
   // Create icon object dynamic
   for (const categories of categoryData) {
     icon[categories.type] = categories.icon
   }
-  let records = categoryData.map((item, i) => Object.assign({}, item, recordData[i]))
-  const totalAmount = records.reduce((accumulator, record) => accumulator + record.amount, 0)
-  for (const record of records) {
-    record.icon = icon[record.category]
+  for (const record of recordData) {
+    record.category = icon[record.category]
   }
-  res.render('index', { records, totalAmount })
+  res.render('index', { recordData, totalAmount })
 
 })
 
@@ -38,12 +38,6 @@ app.get('/records/new', (req, res) => {
 
 app.post('/create', async (req, res) => {
   const newExpense = req.body
-  console.log(icon)
-  await Category.create({
-    name: newExpense.name,
-    type: newExpense.category,
-    icon: icon[newExpense.category]
-  })
   await Record.create(newExpense)
     .then(res.redirect('/'))
     .catch(err => console.log('Create Error'))
@@ -67,6 +61,14 @@ app.post('/records/:id', async (req, res) => {
       record = Object.assign(record, updated)
       return record.save()
     }).then(res.redirect('/')).catch(err => console.log('Error'))
+})
+
+app.post('/records/:id/delete', async (req, res) => {
+  const id = req.params.id
+  await Record.findById(id)
+    .then(record => record.remove())
+    .then(res.redirect('/'))
+    .catch(err => console.error(err))
 })
 
 
