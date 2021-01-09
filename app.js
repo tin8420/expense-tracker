@@ -26,8 +26,7 @@ app.get('/', async (req, res) => {
   for (const record of recordData) {
     record.category = icon[record.category]
   }
-  res.render('index', { recordData, totalAmount })
-
+  res.render('index', { recordData, categoryData, totalAmount })
 })
 
 app.get('/records/new', (req, res) => {
@@ -71,6 +70,13 @@ app.post('/records/:id/delete', async (req, res) => {
     .catch(err => console.error(err))
 })
 
+app.get('/filter', async (req, res) => {
+  let recordData = await Record.find().lean()
+  const categoryData = await Category.find().lean()
+  const filter = req.query
+  recordData = recordData.filter(record => record.category === filter.category)
+  res.render('index', { recordData, categoryData })
+})
 
 app.listen(port, () => {
   console.log(`Server now is running on localhost:${port}`)

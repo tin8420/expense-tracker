@@ -1,3 +1,11 @@
+<form action="/filter">
+  <select id="filter" class="form-control" name="category" required onchange="this.form.submit()">
+    <option selected>類別</option>
+    {{#each categoryData}}
+    <option>{{this.type}}</option>
+    {{/each}}
+  </select>
+</form>
 <div class="total">
   {{totalAmount}}
 </div>
