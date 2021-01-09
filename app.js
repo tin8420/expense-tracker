@@ -6,7 +6,7 @@ const Record = require('./models/Record')
 const Category = require('./models/Category')
 const port = 3000
 require('./config/mongoose')
-
+let icon = {}
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -18,7 +18,6 @@ app.get('/', async (req, res) => {
   const recordData = await Record.find().lean()
   const categoryData = await Category.find().lean()
   const totalAmount = recordData.reduce((accumulator, record) => accumulator + record.amount, 0)
-  let icon = {}
   // Create icon object dynamic
   for (const categories of categoryData) {
     icon[categories.type] = categories.icon
@@ -75,6 +74,9 @@ app.get('/filter', async (req, res) => {
   const categoryData = await Category.find().lean()
   const filter = req.query
   recordData = recordData.filter(record => record.category === filter.category)
+  for (const record of recordData) {
+    record.category = icon[record.category]
+  }
   res.render('index', { recordData, categoryData })
 })
 
