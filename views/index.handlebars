@@ -1,3 +1,84 @@
+<style>
+  #filter {
+    width: 400px;
+  }
+
+  ul {
+    margin-top: 15px;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 600px;
+    margin: 5px 0;
+  }
+
+  li:nth-child(odd) {
+    background-color: rgba(204, 223, 245, 0.2);
+  }
+
+  .total {
+    display: flex;
+    font-size: 52px;
+    margin-top: 10px;
+    color: rgb(231, 90, 34);
+  }
+
+  .total>p {
+    color: rgb(0, 0, 0);
+    font-size: 36px;
+  }
+
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+  }
+
+  .amount {
+    font-size: 24px;
+  }
+
+  .title {
+    display: flex;
+    justify-content: space-evenly;
+    width: 150px;
+  }
+
+  .title-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edit {
+    display: flex;
+    justify-content: space-around;
+    width: 100px;
+  }
+
+  button {
+    border: none;
+    background-color: inherit;
+  }
+
+  .btn {
+    width: 100px;
+    margin-top: 10px;
+    color: white;
+    outline: palegoldenrod;
+    background-color: tomato;
+    border-color: black;
+  }
+
+  .btn:hover {
+    opacity: 0.6;
+  }
+</style>
+
+
 <form action="/filter">
   <select id="filter" class="form-control" name="category" required onchange="this.form.submit()">
     <option selected>類別</option>
@@ -7,24 +88,46 @@
   </select>
 </form>
 <div class="total">
-  {{totalAmount}}
+  <p>總支出：</p>
+  <span id="amount">{{totalAmount}}</span>
 </div>
 <ul class="list-group">
   {{#each recordData}}
-  <li class="list-group-item">
-    <i class="{{this.category}}"></i>
-    <div class="name">{{this.name}}</div>
-    <div class="amount">{{this.amount}}</div>
-    <div class="date">{{this.date}}</div>
+  <li id='expense'>
+    <div class="info">
+      <div class="title">
+        <i class="{{this.category}}"></i>
+        <div class="title-info">
+          <div class="name">{{this.name}}</div>
+          <div class="date">{{this.date}}</div>
+        </div>
+      </div>
+      <div class="amount">{{this.amount}}</div>
+    </div>
     <div class="edit">
       <a href="./records/{{this._id}}/edit"><i class="far fa-edit"></i></a>
+      <form action="/records/{{this._id}}/delete" method="POST">
+        <button type="submit"><i class="fas fa-trash-alt fa-2x"></i></button>
+      </form>
     </div>
-    <form action="/records/{{this._id}}/delete" method="POST">
-      <button class="btn-delete" type="submit"><i class="fas fa-trash-alt fa-2x"></i></button>
-    </form>
   </li>
   {{/each}}
 </ul>
 
-<a class="btn btn-outline-dark" href="./records/new" role="button">新增
+<a class="btn" href="./records/new" role="button">新增支出
 </a>
+<script>
+  let amount = document.querySelector('#amount')
+  const li = document.querySelectorAll('#expense')
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  }
+  amount.innerHTML = numberWithCommas(amount.innerHTML)
+  for (let item of li) {
+    let Number = item.firstElementChild.children[1]
+    Number.innerHTML = numberWithCommas(Number.innerHTML)
+  }
+
+
+
+</script>

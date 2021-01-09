@@ -3,22 +3,22 @@
     {
       "name": "裹腳布",
       "type": "家庭支出",
-      "icon": "fas fa-home"
+      "icon": "fas fa-home fa-2x"
     },
     {
       "name": "蠶寶寶",
       "type": "娛樂費",
-      "icon": "fas fa-grin-beam"
+      "icon": "fas fa-grin-beam fa-2x"
     },
     {
       "name": "生日大餐",
       "type": "飲食費",
-      "icon": "fas fa-utensils"
+      "icon": "fas fa-utensils fa-2x"
     },
     {
       "name": "加油",
       "type": "交通費",
-      "icon": "fas fa-shuttle-van"
+      "icon": "fas fa-shuttle-van fa-2x"
     }
   ],
   "record": [
