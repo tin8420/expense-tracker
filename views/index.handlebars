@@ -79,7 +79,7 @@
 </style>
 
 
-<form action="/filter">
+<form action="/records/filter">
   <select id="filter" class="form-control" name="category" required onchange="this.form.submit()">
     <option selected>類別</option>
     {{#each categoryData}}
@@ -105,8 +105,8 @@
       <div class="amount">{{this.amount}}</div>
     </div>
     <div class="edit">
-      <a href="./records/{{this._id}}/edit"><i class="far fa-edit"></i></a>
-      <form action="/records/{{this._id}}/delete" method="POST">
+      <a href="./records/{{this._id}}/edit?_method=PUT"><i class="far fa-edit"></i></a>
+      <form action="/records/{{this._id}}/delete?_method=DELETE" method="POST">
         <button type="submit"><i class="fas fa-trash-alt fa-2x"></i></button>
       </form>
     </div>
