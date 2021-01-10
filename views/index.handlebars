@@ -106,7 +106,8 @@
     </div>
     <div class="edit">
       <a href="./records/{{this._id}}/edit?_method=PUT"><i class="far fa-edit"></i></a>
-      <form action="/records/{{this._id}}/delete?_method=DELETE" method="POST">
+      <form action="/records/{{this._id}}/delete?_method=DELETE" method="POST"
+        onsubmit="return confirm('確認刪除{{this.name}}?')">
         <button type="submit"><i class="fas fa-trash-alt fa-2x"></i></button>
       </form>
     </div>
@@ -127,7 +128,4 @@
     let Number = item.firstElementChild.children[1]
     Number.innerHTML = numberWithCommas(Number.innerHTML)
   }
-
-
-
 </script>
