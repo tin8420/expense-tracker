@@ -4,8 +4,9 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const routes = require('./routes')
-const PORT = process.env.PORT || 3000
 require('./config/mongoose')
+const PORT = process.env.PORT || 3000
+
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
