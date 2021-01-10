@@ -22,7 +22,7 @@
  <li>nodemon 
 </ul>
 
-執行步驟
+## 執行步驟
 
 clone我的專案吧<br>
 `$ git clone https://github.com/tin8420/expense-tracker.git`
