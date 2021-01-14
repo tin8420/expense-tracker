@@ -79,15 +79,15 @@
 </style>
 
 
-<form action="/records/filter">
+<form action="/">
   <select id="filter" class="form-control" name="category" required onchange="this.form.submit()">
-    <option selected>類別</option>
+    <option selected disabled>類別</option>
     {{#each categoryData}}
-    <option>{{this.type}}</option>
+    <option {{#filter ...filter this.type }}selected{{/filter}}>{{this.type}}</option>
     {{/each}}
   </select>
 </form>
-<div class="total">
+<div class=" total">
   <p>總支出：</p>
   <span id="amount">{{totalAmount}}</span>
 </div>

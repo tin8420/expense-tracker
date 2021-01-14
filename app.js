@@ -5,8 +5,8 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const routes = require('./routes')
 require('./config/mongoose')
+const helper = require('./helper')
 const PORT = process.env.PORT || 3000
-
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -18,6 +18,3 @@ app.use(routes)
 app.listen(PORT, () => {
   console.log(`Server now is running on localhost:${PORT}.`)
 })
-
-
-
