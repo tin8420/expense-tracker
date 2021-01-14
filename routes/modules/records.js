@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/Record')
 const Category = require('../../models/Category')
-let icon = {}
+
 
 
 router.get('/new', (req, res) => {
@@ -11,17 +11,17 @@ router.get('/new', (req, res) => {
     .then(categories => res.render('new', { categories }))
 })
 
-router.post('/new', async (req, res) => {
+router.post('/new', (req, res) => {
   const newExpense = req.body
-  await Record.create(newExpense)
+  Record.create(newExpense)
     .then(res.redirect('/'))
     .catch(err => console.log('Create Error'))
 })
 
 
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', (req, res) => {
   const id = req.params.id
-  await Record.findById(id)
+  Record.findById(id)
     .lean()
     .then(records => {
       Category.find()
@@ -29,7 +29,7 @@ router.get('/:id/edit', async (req, res) => {
         .then(categories => res.render('edit', { records, categories }))
     })
 })
-router.put('/:id', async (req, res) => {
+router.put('/:id', (req, res) => {
   const id = req.params.id
   const updated = req.body
   Record.findById(id)
@@ -39,27 +39,12 @@ router.put('/:id', async (req, res) => {
     }).then(res.redirect('/')).catch(err => console.log('Error'))
 })
 
-router.delete('/:id/delete', async (req, res) => {
+router.delete('/:id/delete', (req, res) => {
   const id = req.params.id
-  await Record.findById(id)
+  Record.findById(id)
     .then(record => record.remove())
     .then(res.redirect('/'))
     .catch(err => console.error(err))
-})
-
-router.get('/filter', async (req, res) => {
-  let recordData = await Record.find().lean()
-  const categoryData = await Category.find().lean()
-  const filter = req.query
-  recordData = recordData.filter(record => record.category === filter.category)
-  const totalAmount = recordData.reduce((accumulator, record) => accumulator + record.amount, 0)
-  for (const categories of categoryData) {
-    icon[categories.type] = categories.icon
-  }
-  for (const record of recordData) {
-    record.category = icon[record.category]
-  }
-  res.render('index', { recordData, categoryData, totalAmount })
 })
 
 module.exports = router

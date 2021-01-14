@@ -15,6 +15,10 @@
     {
       "type": "交通費",
       "icon": "fas fa-shuttle-van fa-2x"
+    },
+    {
+      "type": "其他",
+      "icon": "fas fa-pen fa-2x"
     }
   ],
   "record": [
@@ -41,6 +45,12 @@
       "category": "交通費",
       "amount": 82389,
       "date": "2020-11-01"
+    },
+    {
+      "name": "太空移民費",
+      "category": "其他",
+      "amount": 22689,
+      "date": "2020-12-21"
     }
   ]
 }
