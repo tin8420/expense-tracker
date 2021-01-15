@@ -1,9 +1,9 @@
-# 廣志的私帳
+# 廣志の私帳
 ### 還在煩惱爆肝存下來的私房錢如何管控嗎? 那這裡有個你非常適合的網頁
 <a href="https://mighty-bastion-40786.herokuapp.com/">雲端連結</a>
 
-![alt text](https://i.imgur.com/ScFwNM8.png)
 
+![alt text](https://i.imgur.com/ScFwNM8.png)
 
 ![alt text](https://i.imgur.com/SbAGBYB.png)
 
@@ -13,12 +13,14 @@
   <li>廣志可以瀏覽所有支出項目。
   <li>廣志可以編輯支出項目。
   <li>廣志可以刪除支出項目。
+  <li>廣志可以依照種類篩選支出。
 </ul>
 
 
 ## 環境需求
 <ul>
-詳細可見package.json中記載
+<li>詳細可見package.json中記載
+  <li>Node.js
  <li>express
  <li>express-handlebars
  <li>mongoose
