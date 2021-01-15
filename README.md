@@ -19,17 +19,18 @@
 
 ## 環境需求
 <ul>
-<li>詳細可見package.json中記載
-  <li>Node.js
- <li>express
- <li>express-handlebars
- <li>mongoose
- <li>method-override
- <li>body-parser
- <li>nodemon 
+ <li>詳細可見package.json中記載
+ <li>Node.js
+ <li>Express
+ <li>Express-handlebars
+ <li>Mongoose
+ <li>Method-override
+ <li>Body-parser
+ <li>Nodemon 
 </ul>
 
 ## 執行步驟
+
 
 clone我的專案吧<br>
 `$ git clone https://github.com/tin8420/expense-tracker.git`
