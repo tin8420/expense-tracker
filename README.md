@@ -2,6 +2,11 @@
 ### 還在煩惱爆肝存下來的私房錢如何管控嗎? 那這裡有個你非常適合的網頁
 <a href="https://mighty-bastion-40786.herokuapp.com/">雲端連結</a>
 
+![alt text](https://i.imgur.com/ScFwNM8.png)
+
+
+![alt text](https://i.imgur.com/SbAGBYB.png)
+
 ## 本產品可使用的功能有以下(User Story)
 <ul>
   <li>廣志可以新增花費項目。
