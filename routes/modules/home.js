@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/Record')
 const Category = require('../../models/Category')
-const to = require('await-to-js').default
+
 
 
 router.get('/', async (req, res) => {
