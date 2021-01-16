@@ -1,5 +1,6 @@
-# 廣志の私帳
-### 還在煩惱爆肝存下來的私房錢如何管控嗎? 那這裡有個你非常適合的網頁
+# 老爸的私房錢 AKA廣志の私帳
+### 還在煩惱爆肝存下來的私房錢如何管控嗎? 
+那想必你應該會喜歡這個小工具
 <a href="https://mighty-bastion-40786.herokuapp.com/">雲端連結</a>
 
 
@@ -17,7 +18,7 @@
 </ul>
 
 
-## 環境需求
+## 環境需求 (Prerequisites)
 <ul>
  <li>詳細可見package.json中記載
  <li>Node.js
@@ -29,7 +30,7 @@
  <li>Nodemon 
 </ul>
 
-## 執行步驟
+## 執行步驟 (Execution step)
 
 
 clone我的專案吧<br>
